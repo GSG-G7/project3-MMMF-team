@@ -8,32 +8,31 @@
     <title>News Project</title>
 </head>
 <body>
-    <header>
-        <h1>NEWS Project</h1>
+    <header class='head'>
+        <h1 class="head__title">NEWS Project</h1>
     </header>
     <main>
-        <div class="search-bar">
-            <form action="">
+        <div class="container">
+            <div class="search-bar">
                 <label for="search-input">
                 </label>
-                <input type="text" placeholder="get some news.. " id="search-input">
-                <input type="submit" id="submit-btn">
-            </form>
+                <input class="search-bar__input" type="text" placeholder="get some news.. " id="search-input">
+                <input class="search-bar__submit" type="submit" id="submit-btn">
+            </div>
+            <div class="currency">
+                <select  class="currency__box" name="cones-select" id="cones-select">
+                    <option value="usd">usd</option>
+                    <option value="nis">nis</option>
+                    <option value="eur">euro</option>
+                    <option value="yen">yen</option>
+                </select>
+                <p class="currency__value">234</p>
+            </div>
         </div>
-        <div class="currency">
-            <select name="cones-select" id="cones-select">
-                <option value="usd">usd</option>
-                <option value="nis">nis</option>
-                <option value="eur">euro</option>
-                <option value="yen">yen</option>
-            </select>
-            <p class="currency__value"></p>
-        </div>
-        <section class="plog-container">  
-            </div> 
+        <section class="plog-container">
         </section>
     </main>
-    <footer><p>© 2019 NEWS_MMMF. ALL RIGHTS RESERVED.</p></footer>
+    <footer class="footer"><p>© 2019 NEWS_MMMF. ALL RIGHTS RESERVED.</p></footer>
     <script src="js/logic.js"></script>
     <script src="js/request.js"></script>
     <script src="js/dom.js"></script>
