@@ -1,1 +1,2 @@
-let test = require('tape');
+const test = require('tape');
+const logic = require('../public/js/logic');
