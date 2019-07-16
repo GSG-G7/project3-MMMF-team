@@ -8,15 +8,32 @@
     <title>News Project</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <h1>NEWS Project</h1>
+    </header>
     <main>
         <div class="search-bar">
+            <form action="">
+                <label for="search-input">
+                </label>
+                <input type="text" placeholder="get some news.. " id="search-input">
+                <input type="submit" id="submit-btn">
+            </form>
         </div>
-        <div class="currency"></div>
-        <section class="plog-container">   
+        <div class="currency">
+            <select name="cones-select" id="cones-select">
+                <option value="usd">usd</option>
+                <option value="nis">nis</option>
+                <option value="eur">euro</option>
+                <option value="yen">yen</option>
+            </select>
+            <p class="currency__value"></p>
+        </div>
+        <section class="plog-container">  
+            </div> 
         </section>
     </main>
-    <footer></footer>
+    <footer><p>© 2019 NEWS_MMMF. ALL RIGHTS RESERVED.</p></footer>
     <script src="js/logic.js"></script>
     <script src="js/request.js"></script>
     <script src="js/dom.js"></script>
