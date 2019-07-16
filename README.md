@@ -31,7 +31,6 @@ As a **interisted person in the news:**
 
 <hr/>
 
-#### our mazzage :) no realy we
 <br/> 
 
 * we want make website that view the news from the big media in the word in one page by using the api news and exchange coines api.
