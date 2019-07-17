@@ -1,5 +1,6 @@
-let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=9357b6f9cbd64246abcf2c26886e6979'
-// request(url,print)
+let urlNews = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=9357b6f9cbd64246abcf2c26886e6979'
+const inputBtn = document.getElementById('submit-btn');
+const inputField = document.getElementById('search-input');
 const select = (selector)=>document.querySelector(selector);
 const newElement = (element)=>document.createElement(element);
 const blog = document.getElementsByClassName('plog-container')[0],
@@ -36,4 +37,21 @@ function createElm(array){
         }
    }
 
-xhr(url,format)
+function addListener (selctor,eventName,callback){
+    document.querySelector(selctor).addEventListener(eventName,callback);
+}
+xhr(urlNews, (res) => {
+    const arr = format(res);
+            createElm(arr);
+})
+addListener('#submit-btn',"click",()=>{
+    let search = inputField.value;
+    blog.textContent = '';
+    let urlNewsSerch = `https://newsapi.org/v2/everything?q=${search}&apiKey=9357b6f9cbd64246abcf2c26886e6979`
+    xhr(urlNewsSerch, (res) => {
+        const arr = format(res);
+                createElm(arr);
+    })
+})
+
+
