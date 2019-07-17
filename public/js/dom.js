@@ -13,19 +13,27 @@ function createElm(array){
            newImg = document.createElement('IMG'),
            contentDiv = document.createElement('DIV'),
            title = document.createElement('H1'),
-           para = document.createElement('P');
-           newImg.classList.add('news-img')
-           parentDiv.style.display = 'flex';
-           contentDiv.appendChild(title);
-           contentDiv.appendChild(para);
-           parentDiv.appendChild(contentDiv);
-           parentDiv.appendChild(newImg);
-           blog.appendChild(parentDiv);
-           newImg.setAttribute('src',array[i].urlToImage);
-   
-   }
-//    console.log(array[0].urlToImage)
-//     img.src = array[0].urlToImage;
+        link = document.createElement('a');
+        para = document.createElement('P');
+        newImg.classList.add('news-img')
+        parentDiv.style.display = 'flex';
+        contentDiv.appendChild(title);
+        contentDiv.appendChild(para);
+        contentDiv.appendChild(link);
+        parentDiv.appendChild(contentDiv);
+        parentDiv.appendChild(newImg);
+        blog.appendChild(parentDiv);
+        parentDiv.classList.add('plog-container-new');
+        title.textContent = array[i].title;
+        title.classList.add('plog-container-new-title');
+        para.textContent = array[i].description; 
+        para.classList.add('plog-container-new-desciption');
+        link.textContent = 'Read more'; 
+        link.setAttribute('href',array[i].url)
+        link.setAttribute('target','_blank')
+        newImg.setAttribute('src',array[i].urlToImage);
+
+        }
    }
 
-xhr(url,print)
+xhr(url,format)

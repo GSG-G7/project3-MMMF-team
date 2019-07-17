@@ -1,9 +1,9 @@
 
-function print (a,cb1){
+function format(a,cb1){
     let newCut = [];
     for(let i =0;i<5;i++){
         newCut.push(a.articles[i])
     }
-    console.log(newCut)
-      cb1(newCut)
+
+      cb1(newCut); // for create Element functions
 }
