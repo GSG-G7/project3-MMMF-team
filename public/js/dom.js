@@ -34,6 +34,7 @@ function createElm(array){
         link.setAttribute('href',array[i].url)
         link.setAttribute('target','_blank')
         newImg.setAttribute('src',array[i].urlToImage);
+        newImg.alt ="image-news";
 
         }
    } 
