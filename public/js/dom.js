@@ -1,9 +1,13 @@
+let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=9357b6f9cbd64246abcf2c26886e6979'
+// request(url,print)
+const select = (selector)=>document.querySelector(selector);
+const newElement = (element)=>document.createElement(element);
 const blog = document.getElementsByClassName('plog-container')[0],
-      img = document.getElementById('test-img'),
+      img = document.getElementById('test-img');
 
 
 
-function cb2(array){
+function createElm(array){
     for(let i =0;i<array.length;i++){
        let parentDiv = document.createElement('DIV'),
            newImg = document.createElement('IMG'),
@@ -17,10 +21,11 @@ function cb2(array){
            parentDiv.appendChild(contentDiv);
            parentDiv.appendChild(newImg);
            blog.appendChild(parentDiv);
+           newImg.setAttribute('src',array[i].urlToImage);
    
    }
-    img.src = array[0].urlToImage;
+//    console.log(array[0].urlToImage)
+//     img.src = array[0].urlToImage;
    }
 
-let url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=9357b6f9cbd64246abcf2c26886e6979'
-request(url,print)
+xhr(url,print)
