@@ -1,11 +1,12 @@
-let urlNews = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=9357b6f9cbd64246abcf2c26886e6979'
-const inputBtn = document.getElementById('submit-btn');
+let urlNews = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=9357b6f9cbd64246abcf2c26886e6979';
+let urlCurrncy = 'https://api.exchangeratesapi.io/latest';
 const inputField = document.getElementById('search-input');
 const select = (selector)=>document.querySelector(selector);
 const newElement = (element)=>document.createElement(element);
 const blog = document.getElementsByClassName('plog-container')[0],
-      img = document.getElementById('test-img');
-
+      img = document.getElementById('test-img'),
+      selectBox =document.querySelector('.currency__box'),
+      moanyNumber = document.querySelector('.currency__value');
 
 
 function createElm(array){
@@ -35,7 +36,7 @@ function createElm(array){
         newImg.setAttribute('src',array[i].urlToImage);
 
         }
-   }
+   } 
 
 function addListener (selctor,eventName,callback){
     document.querySelector(selctor).addEventListener(eventName,callback);
@@ -55,3 +56,17 @@ addListener('#submit-btn',"click",()=>{
 })
 
 
+
+
+// selectBox.addEventListener('click',(e)=>{
+//     let cone = e.target.value;
+//     console.log(abj.rates.cone)
+// })
+addListener('.currency__box','click',(e)=>{
+    xhr(urlCurrncy ,(abj)=>{
+        let cone =e.target.value;
+        moanyNumber.textContent =  abj.rates[cone] ;
+        console.log(abj.rates )
+
+    })
+})
