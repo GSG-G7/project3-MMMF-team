@@ -3,7 +3,7 @@ function xhr(url, cb) {
    var xhr = new XMLHttpRequest();
    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
-         cb(JSON.parse(xhr.response));
+         cb(JSON.parse(xhr.responsetext));
       }
    };
    xhr.open('GET', url);
