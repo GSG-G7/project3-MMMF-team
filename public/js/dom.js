@@ -17,11 +17,13 @@ function createElm(array){
            title = document.createElement('H1'),
         link = document.createElement('a');
         para = document.createElement('P');
-        newImg.classList.add('news-img')
+        
         parentDiv.style.display = 'flex';
         
-        // by moh h 1 line button
+        // by moh h 2 line button
+        newImg.classList.add('news-img')
         contentDiv.classList.add('header-div');
+        
         contentDiv.appendChild(title);
         contentDiv.appendChild(para);
         contentDiv.appendChild(link);
