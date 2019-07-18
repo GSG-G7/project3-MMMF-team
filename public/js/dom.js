@@ -63,6 +63,7 @@
          parentDiv.style.display = 'flex';
          appendChilds(contentDiv, [title, para, link]);
          appendChilds(parentDiv, [contentDiv, newImg]);
+         contentDiv.classList.add('header-div');
          blog.appendChild(parentDiv);
          parentDiv.classList.add('plog-container-new');
          title.textContent = array[i].title;
@@ -83,7 +84,6 @@
 
    function appendChilds(parent, elements) {
       elements.forEach(elem => {
-         //    console.log(elem)
          parent.appendChild(elem);
       });
    }
