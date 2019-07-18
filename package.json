@@ -4,7 +4,7 @@
   "description": "API week",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/test.test.js"
+    "test": "node ./test/logic_test.test | tap-spec"
   },
   "repository": {
     "type": "git",

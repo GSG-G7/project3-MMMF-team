@@ -1,73 +1,96 @@
-let urlNews = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=9357b6f9cbd64246abcf2c26886e6979';
-let urlCurrncy = 'https://api.exchangeratesapi.io/latest';
-const inputField = document.getElementById('search-input');
-const select = (selector)=>document.querySelector(selector);
-const newElement = (element)=>document.createElement(element);
-const blog = document.getElementsByClassName('plog-container')[0],
-      img = document.getElementById('test-img'),
-      selectBox =document.querySelector('.currency__box'),
-      moanyNumber = document.querySelector('.currency__value');
+(function() {
+   //**********************    variable declaration
+   const url = {
+      apiKey: '9357b6f9cbd64246abcf2c26886e6979',
+      urlNews: () =>
+         `https://newsapi.org/v2/top-headlines?country=us&apiKey=${url.apiKey}`,
+      search: search =>
+         `https://newsapi.org/v2/everything?q=${search}&apiKey=${url.apiKey}`,
+      urlCurrncy: () => 'https://api.exchangeratesapi.io/latest'
+   };
+   const inputField = select('#search-input');
+   const blog = select('.plog-container');
+   const img = select('#test-img');
+   const selectBox = select('.currency__box');
+   const moanyNumber = select('.currency__value');
 
+   //**********************    executable code
 
-function createElm(array){
-    for(let i =0;i<array.length;i++){
-       let parentDiv = document.createElement('DIV'),
-           newImg = document.createElement('IMG'),
-           contentDiv = document.createElement('DIV'),
-           title = document.createElement('H1'),
-        link = document.createElement('a');
-        para = document.createElement('P');
-        newImg.classList.add('news-img')
-        parentDiv.style.display = 'flex';
-        contentDiv.appendChild(title);
-        contentDiv.appendChild(para);
-        contentDiv.appendChild(link);
-        parentDiv.appendChild(contentDiv);
-        parentDiv.appendChild(newImg);
-        blog.appendChild(parentDiv);
-        parentDiv.classList.add('plog-container-new');
-        title.textContent = array[i].title;
-        title.classList.add('plog-container-new-title');
-        para.textContent = array[i].description; 
-        para.classList.add('plog-container-new-desciption');
-        link.textContent = 'Read more'; 
-        link.setAttribute('href',array[i].url)
-        link.setAttribute('target','_blank')
-        newImg.setAttribute('src',array[i].urlToImage);
-        newImg.alt ="image-news";
+   xhr(url.urlNews(), res => {
+      const arr = format(res);
+      createElm(arr);
+   });
 
-        }
-   } 
+   addListener('#submit-btn', 'click', () => {
+      let search = inputField.value;
+      blog.textContent = '';
+      let urlNewsSerch = url.search(search);
+      xhr(urlNewsSerch, res => {
+         const arr = format(res);
+         createElm(arr);
+      });
+   });
 
-function addListener (selctor,eventName,callback){
-    document.querySelector(selctor).addEventListener(eventName,callback);
-}
-xhr(urlNews, (res) => {
-    const arr = format(res);
-            createElm(arr);
-})
-addListener('#submit-btn',"click",()=>{
-    let search = inputField.value;
-    blog.textContent = '';
-    let urlNewsSerch = `https://newsapi.org/v2/everything?q=${search}&apiKey=9357b6f9cbd64246abcf2c26886e6979`
-    xhr(urlNewsSerch, (res) => {
-        const arr = format(res);
-                createElm(arr);
-    })
-})
+   addListener('.currency__box', 'click', e => {
+      xhr(url.urlCurrncy(), abj => {
+         let cone = e.target.value;
+         moanyNumber.textContent = abj.rates[cone];
+         console.log(abj.rates);
+      });
+   });
 
+   //**********************    function declaration
 
+   function select(selector) {
+      return document.querySelector(selector);
+   }
 
+   function createElement(element) {
+      return document.createElement(element);
+   }
 
-// selectBox.addEventListener('click',(e)=>{
-//     let cone = e.target.value;
-//     console.log(abj.rates.cone)
-// })
-addListener('.currency__box','click',(e)=>{
-    xhr(urlCurrncy ,(abj)=>{
-        let cone =e.target.value;
-        moanyNumber.textContent =  abj.rates[cone] ;
-        console.log(abj.rates )
+   function createElm(array) {
+      for (let i = 0; i < array.length; i++) {
+         let [
+            parentDiv,
+            newImg,
+            contentDiv,
+            title,
+            link,
+            para
+         ] = createElements(['DIV', 'IMG', 'DIV', 'H1', 'a', 'P']);
+         newImg.classList.add('news-img');
+         parentDiv.style.display = 'flex';
+         appendChilds(contentDiv, [title, para, link]);
+         appendChilds(parentDiv, [contentDiv, newImg]);
+         blog.appendChild(parentDiv);
+         parentDiv.classList.add('plog-container-new');
+         title.textContent = array[i].title;
+         title.classList.add('plog-container-new-title');
+         para.textContent = array[i].description;
+         para.classList.add('plog-container-new-desciption');
+         link.textContent = 'Read more';
+         link.setAttribute('href', array[i].url);
+         link.setAttribute('target', '_blank');
+         newImg.setAttribute('src', array[i].urlToImage);
+         newImg.alt = 'image-news';
+      }
+   }
 
-    })
-})
+   function addListener(selctor, eventName, callback) {
+      document.querySelector(selctor).addEventListener(eventName, callback);
+   }
+
+   function appendChilds(parent, elements) {
+      elements.forEach(elem => {
+         //    console.log(elem)
+         parent.appendChild(elem);
+      });
+   }
+
+   function createElements(elements) {
+      return elements.map(elem => {
+         return createElement(elem);
+      });
+   }
+})();
