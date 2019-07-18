@@ -19,6 +19,9 @@ function createElm(array){
         para = document.createElement('P');
         newImg.classList.add('news-img')
         parentDiv.style.display = 'flex';
+        
+        // by moh h 1 line button
+        contentDiv.classList.add('header-div');
         contentDiv.appendChild(title);
         contentDiv.appendChild(para);
         contentDiv.appendChild(link);
