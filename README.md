@@ -2,9 +2,7 @@
 ## MMMF New's 
 
 <br/>
-<!-- ``` javascript
-console.log();
-``` -->
+
 <br/>
 
 ### User journey:
